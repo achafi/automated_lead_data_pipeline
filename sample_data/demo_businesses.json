@@ -1,0 +1,1987 @@
+{
+  "note": "Entirely fictional, intentionally includes duplicates, malformed fields and invalid coordinates for demonstration. Not actual OpenStreetMap listings.",
+  "scenarios": [
+    {
+      "Records": "R0001–R0003",
+      "Scenario": "Connected duplicate group",
+      "Expected result": "R0001 matches R0002 by phone; R0002 matches R0003 by website. One group, recommended R0002."
+    },
+    {
+      "Records": "R0004–R0005",
+      "Scenario": "Same website, different URL formats",
+      "Expected result": "One group: protocol, www, paths, and query parameters do not change the domain."
+    },
+    {
+      "Records": "R0006–R0007",
+      "Scenario": "Similar names nearby",
+      "Expected result": "One possible-duplicate group under default thresholds."
+    },
+    {
+      "Records": "R0008–R0009",
+      "Scenario": "Distant branches, shared phone and website",
+      "Expected result": "Separate records under default thresholds; larger distance settings can join them."
+    },
+    {
+      "Records": "R0010, R0019",
+      "Scenario": "Valid control records",
+      "Expected result": "No validation issues. R0019 uses contact:* fallback tags."
+    },
+    {
+      "Records": "R0011",
+      "Scenario": "Extra spaces and country alias",
+      "Expected result": "Cleaning fixes spacing and converts United Kingdom to GB; surrounding email/URL spaces are flagged before cleaning."
+    },
+    {
+      "Records": "R0012–R0013",
+      "Scenario": "Malformed email, website, and phone",
+      "Expected result": "Validation flags format issues; cleaning does not repair or remove them."
+    },
+    {
+      "Records": "R0014–R0017",
+      "Scenario": "Invalid or missing coordinates",
+      "Expected result": "Out-of-range latitude/longitude, non-numeric latitude, and absent coordinates are shown as invalid only when populated; missing coordinates are skipped. These records have no map markers."
+    },
+    {
+      "Records": "R0018, R0020",
+      "Scenario": "Missing and whitespace-only fields",
+      "Expected result": "Missing values are not validation errors. Completeness cards still reflect availability; cleaning standardizes blanks."
+    }
+  ],
+  "elements": [
+    {
+      "type": "node",
+      "id": 10001,
+      "tags": {
+        "amenity": "dentist",
+        "name": "Alder Grove Dental Studio",
+        "addr:housenumber": "1",
+        "addr:city": "London",
+        "addr:country": "GB",
+        "phone": "+44 (20) 7946-0001",
+        "website": "https://record-0-1.example.com"
+      },
+      "lat": 51.508,
+      "lon": -0.135
+    },
+    {
+      "type": "way",
+      "id": 10002,
+      "tags": {
+        "amenity": "dentist",
+        "name": "Riverlight Dental Studio",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "2",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "44 20 7946 0001",
+        "website": "https://www.bridge-0.example.com/contact",
+        "email": "hello@record-0-2.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.5082,
+        "lon": -0.135
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10003,
+      "tags": {
+        "amenity": "dentist",
+        "name": "Maple Square Dental Studio",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "3",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "website": "http://bridge-0.example.com/?ref=demo"
+      },
+      "center": {
+        "lat": 51.5084,
+        "lon": -0.135
+      }
+    },
+    {
+      "type": "node",
+      "id": 10004,
+      "tags": {
+        "amenity": "dentist",
+        "name": "Copper House Dental Studio",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "4",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0004",
+        "website": "https://www.shared-0.example.com/one",
+        "email": "hello@record-0-4.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": 51.511,
+      "lon": -0.13
+    },
+    {
+      "type": "way",
+      "id": 10005,
+      "tags": {
+        "amenity": "dentist",
+        "name": "Cedar Lodge Dental Studio",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "5",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0005",
+        "website": "http://shared-0.example.com/two?ref=demo",
+        "email": "hello@record-0-5.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.5112,
+        "lon": -0.13
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10006,
+      "tags": {
+        "amenity": "dentist",
+        "name": "Willow Dental Studio",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "6",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0006",
+        "website": "https://record-0-6.example.com",
+        "email": "hello@record-0-6.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.515,
+        "lon": -0.123
+      }
+    },
+    {
+      "type": "node",
+      "id": 10007,
+      "tags": {
+        "amenity": "dentist",
+        "name": "Willow Dental Studios",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "7",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0007",
+        "website": "https://record-0-7.example.com",
+        "email": "hello@record-0-7.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": 51.5152,
+      "lon": -0.123
+    },
+    {
+      "type": "way",
+      "id": 10008,
+      "tags": {
+        "amenity": "dentist",
+        "name": "Horizon Dental Studio",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "8",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0088",
+        "website": "https://branches-0.example.com/branch-7",
+        "email": "hello@record-0-8.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.506,
+        "lon": -0.139
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10009,
+      "tags": {
+        "amenity": "dentist",
+        "name": "Horizon Dental Studio",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "9",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0088",
+        "website": "https://branches-0.example.com/branch-8",
+        "email": "hello@record-0-9.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.519,
+        "lon": -0.116
+      }
+    },
+    {
+      "type": "node",
+      "id": 10010,
+      "tags": {
+        "amenity": "dentist",
+        "name": "Orchid Dental Studio",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "10",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0010",
+        "website": "https://record-0-10.example.com",
+        "email": "hello@record-0-10.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": 51.512,
+      "lon": -0.127
+    },
+    {
+      "type": "way",
+      "id": 10011,
+      "tags": {
+        "amenity": "dentist",
+        "name": "  Juniper   Dental Studio  ",
+        "addr:street": "  Example   Lane ",
+        "addr:housenumber": "11",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": " United Kingdom ",
+        "phone": "  +44 (20) 7946 0999  ",
+        "website": " https://spacing-0.example.com/path ",
+        "email": " hello@spacing-0.example.com ",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10012,
+      "tags": {
+        "amenity": "dentist",
+        "name": "Birch Dental Studio",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "12",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0012",
+        "website": "https://record-0-12.example.com",
+        "email": "contact.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "node",
+      "id": 10013,
+      "tags": {
+        "amenity": "dentist",
+        "name": "Topaz Dental Studio",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "13",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "call-us",
+        "website": "ftp://files.example.com",
+        "email": "hello@record-0-13.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": 51.512,
+      "lon": -0.127
+    },
+    {
+      "type": "way",
+      "id": 10014,
+      "tags": {
+        "amenity": "dentist",
+        "name": "Sequoia Dental Studio",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "14",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0014",
+        "website": "https://record-0-14.example.com",
+        "email": "hello@record-0-14.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 120,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10015,
+      "tags": {
+        "amenity": "dentist",
+        "name": "Cobalt Dental Studio",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "15",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0015",
+        "website": "https://record-0-15.example.com",
+        "email": "hello@record-0-15.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": 220
+      }
+    },
+    {
+      "type": "node",
+      "id": 10016,
+      "tags": {
+        "amenity": "dentist",
+        "name": "Saffron Dental Studio",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "16",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0016",
+        "website": "https://record-0-16.example.com",
+        "email": "hello@record-0-16.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": "not-a-number",
+      "lon": -0.127
+    },
+    {
+      "type": "way",
+      "id": 10017,
+      "tags": {
+        "amenity": "dentist",
+        "name": "Jasmine Dental Studio",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "17",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 (20) 7946-0001",
+        "website": "https://record-0-17.example.com",
+        "email": "hello@record-0-17.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10018,
+      "tags": {
+        "amenity": "dentist",
+        "addr:housenumber": "18",
+        "addr:country": "GB",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "node",
+      "id": 10019,
+      "tags": {
+        "amenity": "dentist",
+        "name": "Magnolia Dental Studio",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "19",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "opening_hours": "Mo-Fr 09:00-17:00",
+        "contact:phone": "+44 20 7946 0019",
+        "contact:website": "https://record-0-19.example.com",
+        "contact:email": "hello@record-0-19.example.com"
+      },
+      "lat": 51.512,
+      "lon": -0.127
+    },
+    {
+      "type": "way",
+      "id": 10020,
+      "tags": {
+        "amenity": "dentist",
+        "name": " \t ",
+        "addr:street": " \t ",
+        "addr:housenumber": "20",
+        "addr:city": " \t ",
+        "addr:postcode": " \t ",
+        "addr:country": "GB",
+        "phone": " \t ",
+        "website": " \t ",
+        "email": " \t ",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "node",
+      "id": 10101,
+      "tags": {
+        "amenity": "pharmacy",
+        "name": "Alder Grove Pharmacy",
+        "addr:housenumber": "1",
+        "addr:city": "London",
+        "addr:country": "GB",
+        "phone": "+44 (20) 7946-0001",
+        "website": "https://record-1-1.example.com"
+      },
+      "lat": 51.508,
+      "lon": -0.135
+    },
+    {
+      "type": "way",
+      "id": 10102,
+      "tags": {
+        "amenity": "pharmacy",
+        "name": "Riverlight Pharmacy",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "2",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "44 20 7946 0001",
+        "website": "https://www.bridge-1.example.com/contact",
+        "email": "hello@record-1-2.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.5082,
+        "lon": -0.135
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10103,
+      "tags": {
+        "amenity": "pharmacy",
+        "name": "Maple Square Pharmacy",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "3",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "website": "http://bridge-1.example.com/?ref=demo"
+      },
+      "center": {
+        "lat": 51.5084,
+        "lon": -0.135
+      }
+    },
+    {
+      "type": "node",
+      "id": 10104,
+      "tags": {
+        "amenity": "pharmacy",
+        "name": "Copper House Pharmacy",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "4",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0004",
+        "website": "https://www.shared-1.example.com/one",
+        "email": "hello@record-1-4.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": 51.511,
+      "lon": -0.13
+    },
+    {
+      "type": "way",
+      "id": 10105,
+      "tags": {
+        "amenity": "pharmacy",
+        "name": "Cedar Lodge Pharmacy",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "5",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0005",
+        "website": "http://shared-1.example.com/two?ref=demo",
+        "email": "hello@record-1-5.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.5112,
+        "lon": -0.13
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10106,
+      "tags": {
+        "amenity": "pharmacy",
+        "name": "Willow Pharmacy",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "6",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0006",
+        "website": "https://record-1-6.example.com",
+        "email": "hello@record-1-6.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.515,
+        "lon": -0.123
+      }
+    },
+    {
+      "type": "node",
+      "id": 10107,
+      "tags": {
+        "amenity": "pharmacy",
+        "name": "Willow Pharmacys",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "7",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0007",
+        "website": "https://record-1-7.example.com",
+        "email": "hello@record-1-7.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": 51.5152,
+      "lon": -0.123
+    },
+    {
+      "type": "way",
+      "id": 10108,
+      "tags": {
+        "amenity": "pharmacy",
+        "name": "Horizon Pharmacy",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "8",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0088",
+        "website": "https://branches-1.example.com/branch-7",
+        "email": "hello@record-1-8.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.506,
+        "lon": -0.139
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10109,
+      "tags": {
+        "amenity": "pharmacy",
+        "name": "Horizon Pharmacy",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "9",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0088",
+        "website": "https://branches-1.example.com/branch-8",
+        "email": "hello@record-1-9.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.519,
+        "lon": -0.116
+      }
+    },
+    {
+      "type": "node",
+      "id": 10110,
+      "tags": {
+        "amenity": "pharmacy",
+        "name": "Orchid Pharmacy",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "10",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0010",
+        "website": "https://record-1-10.example.com",
+        "email": "hello@record-1-10.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": 51.512,
+      "lon": -0.127
+    },
+    {
+      "type": "way",
+      "id": 10111,
+      "tags": {
+        "amenity": "pharmacy",
+        "name": "  Juniper   Pharmacy  ",
+        "addr:street": "  Example   Lane ",
+        "addr:housenumber": "11",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": " United Kingdom ",
+        "phone": "  +44 (20) 7946 0999  ",
+        "website": " https://spacing-1.example.com/path ",
+        "email": " hello@spacing-1.example.com ",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10112,
+      "tags": {
+        "amenity": "pharmacy",
+        "name": "Birch Pharmacy",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "12",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0012",
+        "website": "https://record-1-12.example.com",
+        "email": "contact.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "node",
+      "id": 10113,
+      "tags": {
+        "amenity": "pharmacy",
+        "name": "Topaz Pharmacy",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "13",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "call-us",
+        "website": "ftp://files.example.com",
+        "email": "hello@record-1-13.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": 51.512,
+      "lon": -0.127
+    },
+    {
+      "type": "way",
+      "id": 10114,
+      "tags": {
+        "amenity": "pharmacy",
+        "name": "Sequoia Pharmacy",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "14",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0014",
+        "website": "https://record-1-14.example.com",
+        "email": "hello@record-1-14.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 120,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10115,
+      "tags": {
+        "amenity": "pharmacy",
+        "name": "Cobalt Pharmacy",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "15",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0015",
+        "website": "https://record-1-15.example.com",
+        "email": "hello@record-1-15.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": 220
+      }
+    },
+    {
+      "type": "node",
+      "id": 10116,
+      "tags": {
+        "amenity": "pharmacy",
+        "name": "Saffron Pharmacy",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "16",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0016",
+        "website": "https://record-1-16.example.com",
+        "email": "hello@record-1-16.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": "not-a-number",
+      "lon": -0.127
+    },
+    {
+      "type": "way",
+      "id": 10117,
+      "tags": {
+        "amenity": "pharmacy",
+        "name": "Jasmine Pharmacy",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "17",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 (20) 7946-0001",
+        "website": "https://record-1-17.example.com",
+        "email": "hello@record-1-17.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10118,
+      "tags": {
+        "amenity": "pharmacy",
+        "addr:housenumber": "18",
+        "addr:country": "GB",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "node",
+      "id": 10119,
+      "tags": {
+        "amenity": "pharmacy",
+        "name": "Magnolia Pharmacy",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "19",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "opening_hours": "Mo-Fr 09:00-17:00",
+        "contact:phone": "+44 20 7946 0019",
+        "contact:website": "https://record-1-19.example.com",
+        "contact:email": "hello@record-1-19.example.com"
+      },
+      "lat": 51.512,
+      "lon": -0.127
+    },
+    {
+      "type": "way",
+      "id": 10120,
+      "tags": {
+        "amenity": "pharmacy",
+        "name": " \t ",
+        "addr:street": " \t ",
+        "addr:housenumber": "20",
+        "addr:city": " \t ",
+        "addr:postcode": " \t ",
+        "addr:country": "GB",
+        "phone": " \t ",
+        "website": " \t ",
+        "email": " \t ",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "node",
+      "id": 10201,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Alder Grove Kitchen",
+        "addr:housenumber": "1",
+        "addr:city": "London",
+        "addr:country": "GB",
+        "phone": "+44 (20) 7946-0001",
+        "website": "https://record-2-1.example.com"
+      },
+      "lat": 51.508,
+      "lon": -0.135
+    },
+    {
+      "type": "way",
+      "id": 10202,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Riverlight Kitchen",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "2",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "44 20 7946 0001",
+        "website": "https://www.bridge-2.example.com/contact",
+        "email": "hello@record-2-2.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.5082,
+        "lon": -0.135
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10203,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Maple Square Kitchen",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "3",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "website": "http://bridge-2.example.com/?ref=demo"
+      },
+      "center": {
+        "lat": 51.5084,
+        "lon": -0.135
+      }
+    },
+    {
+      "type": "node",
+      "id": 10204,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Copper House Kitchen",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "4",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0004",
+        "website": "https://www.shared-2.example.com/one",
+        "email": "hello@record-2-4.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": 51.511,
+      "lon": -0.13
+    },
+    {
+      "type": "way",
+      "id": 10205,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Cedar Lodge Kitchen",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "5",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0005",
+        "website": "http://shared-2.example.com/two?ref=demo",
+        "email": "hello@record-2-5.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.5112,
+        "lon": -0.13
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10206,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Willow Kitchen",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "6",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0006",
+        "website": "https://record-2-6.example.com",
+        "email": "hello@record-2-6.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.515,
+        "lon": -0.123
+      }
+    },
+    {
+      "type": "node",
+      "id": 10207,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Willow Kitchens",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "7",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0007",
+        "website": "https://record-2-7.example.com",
+        "email": "hello@record-2-7.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": 51.5152,
+      "lon": -0.123
+    },
+    {
+      "type": "way",
+      "id": 10208,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Horizon Kitchen",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "8",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0088",
+        "website": "https://branches-2.example.com/branch-7",
+        "email": "hello@record-2-8.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.506,
+        "lon": -0.139
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10209,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Horizon Kitchen",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "9",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0088",
+        "website": "https://branches-2.example.com/branch-8",
+        "email": "hello@record-2-9.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.519,
+        "lon": -0.116
+      }
+    },
+    {
+      "type": "node",
+      "id": 10210,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Orchid Kitchen",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "10",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0010",
+        "website": "https://record-2-10.example.com",
+        "email": "hello@record-2-10.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": 51.512,
+      "lon": -0.127
+    },
+    {
+      "type": "way",
+      "id": 10211,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "  Juniper   Kitchen  ",
+        "addr:street": "  Example   Lane ",
+        "addr:housenumber": "11",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": " United Kingdom ",
+        "phone": "  +44 (20) 7946 0999  ",
+        "website": " https://spacing-2.example.com/path ",
+        "email": " hello@spacing-2.example.com ",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10212,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Birch Kitchen",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "12",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0012",
+        "website": "https://record-2-12.example.com",
+        "email": "contact.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "node",
+      "id": 10213,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Topaz Kitchen",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "13",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "call-us",
+        "website": "ftp://files.example.com",
+        "email": "hello@record-2-13.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": 51.512,
+      "lon": -0.127
+    },
+    {
+      "type": "way",
+      "id": 10214,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Sequoia Kitchen",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "14",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0014",
+        "website": "https://record-2-14.example.com",
+        "email": "hello@record-2-14.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 120,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10215,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Cobalt Kitchen",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "15",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0015",
+        "website": "https://record-2-15.example.com",
+        "email": "hello@record-2-15.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": 220
+      }
+    },
+    {
+      "type": "node",
+      "id": 10216,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Saffron Kitchen",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "16",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0016",
+        "website": "https://record-2-16.example.com",
+        "email": "hello@record-2-16.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": "not-a-number",
+      "lon": -0.127
+    },
+    {
+      "type": "way",
+      "id": 10217,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Jasmine Kitchen",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "17",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 (20) 7946-0001",
+        "website": "https://record-2-17.example.com",
+        "email": "hello@record-2-17.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10218,
+      "tags": {
+        "amenity": "restaurant",
+        "addr:housenumber": "18",
+        "addr:country": "GB",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "node",
+      "id": 10219,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Magnolia Kitchen",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "19",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "opening_hours": "Mo-Fr 09:00-17:00",
+        "contact:phone": "+44 20 7946 0019",
+        "contact:website": "https://record-2-19.example.com",
+        "contact:email": "hello@record-2-19.example.com"
+      },
+      "lat": 51.512,
+      "lon": -0.127
+    },
+    {
+      "type": "way",
+      "id": 10220,
+      "tags": {
+        "amenity": "restaurant",
+        "name": " \t ",
+        "addr:street": " \t ",
+        "addr:housenumber": "20",
+        "addr:city": " \t ",
+        "addr:postcode": " \t ",
+        "addr:country": "GB",
+        "phone": " \t ",
+        "website": " \t ",
+        "email": " \t ",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "node",
+      "id": 10301,
+      "tags": {
+        "amenity": "cafe",
+        "name": "Alder Grove Café",
+        "addr:housenumber": "1",
+        "addr:city": "London",
+        "addr:country": "GB",
+        "phone": "+44 (20) 7946-0001",
+        "website": "https://record-3-1.example.com"
+      },
+      "lat": 51.508,
+      "lon": -0.135
+    },
+    {
+      "type": "way",
+      "id": 10302,
+      "tags": {
+        "amenity": "cafe",
+        "name": "Riverlight Café",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "2",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "44 20 7946 0001",
+        "website": "https://www.bridge-3.example.com/contact",
+        "email": "hello@record-3-2.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.5082,
+        "lon": -0.135
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10303,
+      "tags": {
+        "amenity": "cafe",
+        "name": "Maple Square Café",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "3",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "website": "http://bridge-3.example.com/?ref=demo"
+      },
+      "center": {
+        "lat": 51.5084,
+        "lon": -0.135
+      }
+    },
+    {
+      "type": "node",
+      "id": 10304,
+      "tags": {
+        "amenity": "cafe",
+        "name": "Copper House Café",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "4",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0004",
+        "website": "https://www.shared-3.example.com/one",
+        "email": "hello@record-3-4.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": 51.511,
+      "lon": -0.13
+    },
+    {
+      "type": "way",
+      "id": 10305,
+      "tags": {
+        "amenity": "cafe",
+        "name": "Cedar Lodge Café",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "5",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0005",
+        "website": "http://shared-3.example.com/two?ref=demo",
+        "email": "hello@record-3-5.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.5112,
+        "lon": -0.13
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10306,
+      "tags": {
+        "amenity": "cafe",
+        "name": "Willow Café",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "6",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0006",
+        "website": "https://record-3-6.example.com",
+        "email": "hello@record-3-6.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.515,
+        "lon": -0.123
+      }
+    },
+    {
+      "type": "node",
+      "id": 10307,
+      "tags": {
+        "amenity": "cafe",
+        "name": "Willow Cafés",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "7",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0007",
+        "website": "https://record-3-7.example.com",
+        "email": "hello@record-3-7.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": 51.5152,
+      "lon": -0.123
+    },
+    {
+      "type": "way",
+      "id": 10308,
+      "tags": {
+        "amenity": "cafe",
+        "name": "Horizon Café",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "8",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0088",
+        "website": "https://branches-3.example.com/branch-7",
+        "email": "hello@record-3-8.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.506,
+        "lon": -0.139
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10309,
+      "tags": {
+        "amenity": "cafe",
+        "name": "Horizon Café",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "9",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0088",
+        "website": "https://branches-3.example.com/branch-8",
+        "email": "hello@record-3-9.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.519,
+        "lon": -0.116
+      }
+    },
+    {
+      "type": "node",
+      "id": 10310,
+      "tags": {
+        "amenity": "cafe",
+        "name": "Orchid Café",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "10",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0010",
+        "website": "https://record-3-10.example.com",
+        "email": "hello@record-3-10.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": 51.512,
+      "lon": -0.127
+    },
+    {
+      "type": "way",
+      "id": 10311,
+      "tags": {
+        "amenity": "cafe",
+        "name": "  Juniper   Café  ",
+        "addr:street": "  Example   Lane ",
+        "addr:housenumber": "11",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": " United Kingdom ",
+        "phone": "  +44 (20) 7946 0999  ",
+        "website": " https://spacing-3.example.com/path ",
+        "email": " hello@spacing-3.example.com ",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10312,
+      "tags": {
+        "amenity": "cafe",
+        "name": "Birch Café",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "12",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0012",
+        "website": "https://record-3-12.example.com",
+        "email": "contact.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "node",
+      "id": 10313,
+      "tags": {
+        "amenity": "cafe",
+        "name": "Topaz Café",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "13",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "call-us",
+        "website": "ftp://files.example.com",
+        "email": "hello@record-3-13.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": 51.512,
+      "lon": -0.127
+    },
+    {
+      "type": "way",
+      "id": 10314,
+      "tags": {
+        "amenity": "cafe",
+        "name": "Sequoia Café",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "14",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0014",
+        "website": "https://record-3-14.example.com",
+        "email": "hello@record-3-14.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 120,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10315,
+      "tags": {
+        "amenity": "cafe",
+        "name": "Cobalt Café",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "15",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0015",
+        "website": "https://record-3-15.example.com",
+        "email": "hello@record-3-15.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": 220
+      }
+    },
+    {
+      "type": "node",
+      "id": 10316,
+      "tags": {
+        "amenity": "cafe",
+        "name": "Saffron Café",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "16",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0016",
+        "website": "https://record-3-16.example.com",
+        "email": "hello@record-3-16.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": "not-a-number",
+      "lon": -0.127
+    },
+    {
+      "type": "way",
+      "id": 10317,
+      "tags": {
+        "amenity": "cafe",
+        "name": "Jasmine Café",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "17",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 (20) 7946-0001",
+        "website": "https://record-3-17.example.com",
+        "email": "hello@record-3-17.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10318,
+      "tags": {
+        "amenity": "cafe",
+        "addr:housenumber": "18",
+        "addr:country": "GB",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "node",
+      "id": 10319,
+      "tags": {
+        "amenity": "cafe",
+        "name": "Magnolia Café",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "19",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "opening_hours": "Mo-Fr 09:00-17:00",
+        "contact:phone": "+44 20 7946 0019",
+        "contact:website": "https://record-3-19.example.com",
+        "contact:email": "hello@record-3-19.example.com"
+      },
+      "lat": 51.512,
+      "lon": -0.127
+    },
+    {
+      "type": "way",
+      "id": 10320,
+      "tags": {
+        "amenity": "cafe",
+        "name": " \t ",
+        "addr:street": " \t ",
+        "addr:housenumber": "20",
+        "addr:city": " \t ",
+        "addr:postcode": " \t ",
+        "addr:country": "GB",
+        "phone": " \t ",
+        "website": " \t ",
+        "email": " \t ",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "node",
+      "id": 10401,
+      "tags": {
+        "tourism": "hotel",
+        "name": "Alder Grove Hotel",
+        "addr:housenumber": "1",
+        "addr:city": "London",
+        "addr:country": "GB",
+        "phone": "+44 (20) 7946-0001",
+        "website": "https://record-4-1.example.com"
+      },
+      "lat": 51.508,
+      "lon": -0.135
+    },
+    {
+      "type": "way",
+      "id": 10402,
+      "tags": {
+        "tourism": "hotel",
+        "name": "Riverlight Hotel",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "2",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "44 20 7946 0001",
+        "website": "https://www.bridge-4.example.com/contact",
+        "email": "hello@record-4-2.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.5082,
+        "lon": -0.135
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10403,
+      "tags": {
+        "tourism": "hotel",
+        "name": "Maple Square Hotel",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "3",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "website": "http://bridge-4.example.com/?ref=demo"
+      },
+      "center": {
+        "lat": 51.5084,
+        "lon": -0.135
+      }
+    },
+    {
+      "type": "node",
+      "id": 10404,
+      "tags": {
+        "tourism": "hotel",
+        "name": "Copper House Hotel",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "4",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0004",
+        "website": "https://www.shared-4.example.com/one",
+        "email": "hello@record-4-4.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": 51.511,
+      "lon": -0.13
+    },
+    {
+      "type": "way",
+      "id": 10405,
+      "tags": {
+        "tourism": "hotel",
+        "name": "Cedar Lodge Hotel",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "5",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0005",
+        "website": "http://shared-4.example.com/two?ref=demo",
+        "email": "hello@record-4-5.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.5112,
+        "lon": -0.13
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10406,
+      "tags": {
+        "tourism": "hotel",
+        "name": "Willow Hotel",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "6",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0006",
+        "website": "https://record-4-6.example.com",
+        "email": "hello@record-4-6.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.515,
+        "lon": -0.123
+      }
+    },
+    {
+      "type": "node",
+      "id": 10407,
+      "tags": {
+        "tourism": "hotel",
+        "name": "Willow Hotels",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "7",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0007",
+        "website": "https://record-4-7.example.com",
+        "email": "hello@record-4-7.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": 51.5152,
+      "lon": -0.123
+    },
+    {
+      "type": "way",
+      "id": 10408,
+      "tags": {
+        "tourism": "hotel",
+        "name": "Horizon Hotel",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "8",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0088",
+        "website": "https://branches-4.example.com/branch-7",
+        "email": "hello@record-4-8.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.506,
+        "lon": -0.139
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10409,
+      "tags": {
+        "tourism": "hotel",
+        "name": "Horizon Hotel",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "9",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0088",
+        "website": "https://branches-4.example.com/branch-8",
+        "email": "hello@record-4-9.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.519,
+        "lon": -0.116
+      }
+    },
+    {
+      "type": "node",
+      "id": 10410,
+      "tags": {
+        "tourism": "hotel",
+        "name": "Orchid Hotel",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "10",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0010",
+        "website": "https://record-4-10.example.com",
+        "email": "hello@record-4-10.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": 51.512,
+      "lon": -0.127
+    },
+    {
+      "type": "way",
+      "id": 10411,
+      "tags": {
+        "tourism": "hotel",
+        "name": "  Juniper   Hotel  ",
+        "addr:street": "  Example   Lane ",
+        "addr:housenumber": "11",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": " United Kingdom ",
+        "phone": "  +44 (20) 7946 0999  ",
+        "website": " https://spacing-4.example.com/path ",
+        "email": " hello@spacing-4.example.com ",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10412,
+      "tags": {
+        "tourism": "hotel",
+        "name": "Birch Hotel",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "12",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0012",
+        "website": "https://record-4-12.example.com",
+        "email": "contact.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "node",
+      "id": 10413,
+      "tags": {
+        "tourism": "hotel",
+        "name": "Topaz Hotel",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "13",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "call-us",
+        "website": "ftp://files.example.com",
+        "email": "hello@record-4-13.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": 51.512,
+      "lon": -0.127
+    },
+    {
+      "type": "way",
+      "id": 10414,
+      "tags": {
+        "tourism": "hotel",
+        "name": "Sequoia Hotel",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "14",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0014",
+        "website": "https://record-4-14.example.com",
+        "email": "hello@record-4-14.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 120,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10415,
+      "tags": {
+        "tourism": "hotel",
+        "name": "Cobalt Hotel",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "15",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0015",
+        "website": "https://record-4-15.example.com",
+        "email": "hello@record-4-15.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": 220
+      }
+    },
+    {
+      "type": "node",
+      "id": 10416,
+      "tags": {
+        "tourism": "hotel",
+        "name": "Saffron Hotel",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "16",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 20 7946 0016",
+        "website": "https://record-4-16.example.com",
+        "email": "hello@record-4-16.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "lat": "not-a-number",
+      "lon": -0.127
+    },
+    {
+      "type": "way",
+      "id": 10417,
+      "tags": {
+        "tourism": "hotel",
+        "name": "Jasmine Hotel",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "17",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "phone": "+44 (20) 7946-0001",
+        "website": "https://record-4-17.example.com",
+        "email": "hello@record-4-17.example.com",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 10418,
+      "tags": {
+        "tourism": "hotel",
+        "addr:housenumber": "18",
+        "addr:country": "GB",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": -0.127
+      }
+    },
+    {
+      "type": "node",
+      "id": 10419,
+      "tags": {
+        "tourism": "hotel",
+        "name": "Magnolia Hotel",
+        "addr:street": "Example Lane",
+        "addr:housenumber": "19",
+        "addr:city": "London",
+        "addr:postcode": "DEMO",
+        "addr:country": "GB",
+        "opening_hours": "Mo-Fr 09:00-17:00",
+        "contact:phone": "+44 20 7946 0019",
+        "contact:website": "https://record-4-19.example.com",
+        "contact:email": "hello@record-4-19.example.com"
+      },
+      "lat": 51.512,
+      "lon": -0.127
+    },
+    {
+      "type": "way",
+      "id": 10420,
+      "tags": {
+        "tourism": "hotel",
+        "name": " \t ",
+        "addr:street": " \t ",
+        "addr:housenumber": "20",
+        "addr:city": " \t ",
+        "addr:postcode": " \t ",
+        "addr:country": "GB",
+        "phone": " \t ",
+        "website": " \t ",
+        "email": " \t ",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "center": {
+        "lat": 51.512,
+        "lon": -0.127
+      }
+    }
+  ]
+}
